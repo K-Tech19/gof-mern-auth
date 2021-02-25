@@ -24,6 +24,9 @@ const blogPostSchema = new mongoose.Schema({
     game: {
         type: Number
     }
+    email: {
+        type: String
+    }
 })
 
 module.exports = mongoose.model('BlogPost', blogPostSchema)
