@@ -10,8 +10,7 @@ router.post('/createblog', (req, res)=>{ // create blog form
     Blog.create({
         author: req.body.author,
         title: req.body.title,
-        content: req.body.content,
-        comment: req.body.comment
+        content: req.body.content
     })
     .then(user => {
         res.status(201).json(user)
@@ -21,7 +20,8 @@ router.post('/createblog', (req, res)=>{ // create blog form
     })
 })
 
-router.get('/seeblogs/:id',async (req,res)=> {
+router.get('/seeblogs/:id', 
+async (req,res)=> {
     console.log('route hit')
     console.log(req.params.id)
     await Blog.findOne({
