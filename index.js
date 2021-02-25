@@ -13,9 +13,10 @@ app.use(cors())
 app.use(methodOverride('_method'));
 app.use(express.urlencoded({extended: false}))
 // controller middleware
-app.use('/api', require('./controllers/users'))
 
+app.use('/api', require('./controllers/users'))
 app.use('/blog', require('./controllers/blogs'))
+app.use('/game', require('./controllers/Game'))
 
 // app.use('/comments', require('./controllers/comments'))
 app.get('/', (req, res)=> {
