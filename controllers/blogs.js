@@ -15,6 +15,8 @@ router.post('/createblog', (req, res)=>{ // create blog form
     })
     .then(user => {
         res.status(201).json(user)
+        res.redirect('/')
+        console.log(user)
     })
     .catch(err=>{
         console.log('this is an error', err)
