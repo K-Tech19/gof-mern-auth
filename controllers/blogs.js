@@ -10,7 +10,8 @@ router.post('/createblog', (req, res)=>{ // create blog form
     Blog.create({
         author: req.body.author,
         title: req.body.title,
-        content: req.body.content
+        content: req.body.content,
+        email: req.body.email
     })
     .then(user => {
         res.status(201).json(user)
