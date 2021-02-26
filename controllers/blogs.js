@@ -31,7 +31,7 @@ async (req,res)=> {
         _id: req.params.id
     })
     .then((blogs)=> {
-        console.log('🚌',blogs)
+        // console.log('🚌',blogs)
         res.send(blogs)
     })
     .catch(err=>{
@@ -83,9 +83,10 @@ router.post('/createcomment', async(req, res)=>{ // create comment form
 })
 
 router.delete('/deleteblog/:id', async (req, res) => { // connect to delete button
-    await Blog.findByIdAndDelete(req.params.id)
+    Blog.findByIdAndDelete(req.params.id)
     .then(comment => {
-        console.log(comment)
+        console.log(comment,'🇹🇿')
+        // res.redirect('http://localhost:3000/')
     })
     .catch(err => {
         console.log(`error message ${err}`)
