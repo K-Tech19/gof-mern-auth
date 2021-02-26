@@ -13,10 +13,11 @@ router.post('/createblog', (req, res)=>{ // create blog form
         content: req.body.content,
         email: req.body.email
     })
-    .then(user => {
-        res.status(201).json(user)
-        res.redirect('/')
-        console.log(`home is near my chosen one: ${user}`)
+
+    .then(newBlog => {
+        console.log(newBlog)
+        res.send({newBlog})
+
     })
     .catch(err=>{
         console.log('this is an error', err)
@@ -30,6 +31,19 @@ async (req,res)=> {
     await Blog.findOne({
         author: req.params.id
     })
+    .then((blogs)=> {
+        console.log(blogs)
+        res.send(blogs)
+    })
+    .catch(err=>{
+        console.log(`this is error ${err}`)
+    })
+})
+
+router.get('/allBlogs', 
+async (req,res)=> {
+    console.log('route hit')
+    await Blog.find()
     .then((blogs)=> {
         console.log(blogs)
         res.send(blogs)
@@ -70,7 +84,7 @@ router.post('/createcomment', async(req, res)=>{ // create comment form
 })
 
 router.delete('/deleteblog/:id', async (req, res) => { // connect to delete button
-    await Blog.findByIdAndDelete('603402d04c0e525730af4678')
+    await Blog.findByIdAndDelete(req.params.id)
     .then(comment => {
         console.log(comment)
     })
