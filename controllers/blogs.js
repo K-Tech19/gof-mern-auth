@@ -6,7 +6,7 @@ const { requireToken } = require('../middleware/auth')
 
 
 router.post('/createblog', (req, res)=>{ // create blog form
-    console.log('route hit')
+    // console.log('route hit')
     Blog.create({
         author: req.body.author,
         title: req.body.title,
@@ -15,22 +15,22 @@ router.post('/createblog', (req, res)=>{ // create blog form
     })
     .then(newBlog => {
         console.log(newBlog)
-        res.send({newBlog})
+        res.redirect('http://localhost:3000/')
     })
     .catch(err=>{
         console.log('this is an error', err)
     })
 })
 
-router.get('/seeblogs/:id', 
+router.get('/blogs/:id', 
 async (req,res)=> {
     console.log('route hit')
     console.log(req.params.id)
     await Blog.findOne({
-        author: req.params.id
+        _id: req.params.id
     })
     .then((blogs)=> {
-        console.log(blogs)
+        console.log('🚌',blogs)
         res.send(blogs)
     })
     .catch(err=>{
@@ -40,10 +40,10 @@ async (req,res)=> {
 
 router.get('/allBlogs', 
 async (req,res)=> {
-    console.log('route hit')
+    // console.log('route hit')
     await Blog.find()
     .then((blogs)=> {
-        console.log(blogs)
+        // console.log(blogs)
         res.send(blogs)
     })
     .catch(err=>{
@@ -66,8 +66,8 @@ router.put('/updateblog/:id', async (req, res) => { // create update form
 
 router.post('/createcomment', async(req, res)=>{ // create comment form
 
-    console.log('route hit')
-    await Blog.findById('6034000b84834f56c60b19d3')// req.params.id
+    console.log(req.body.id)
+    await Blog.findById(req.body.id)// req.params.id
     .then(foundBlog => {
         console.log(foundBlog)
         console.log(req)
