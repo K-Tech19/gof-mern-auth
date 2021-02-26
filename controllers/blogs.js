@@ -13,6 +13,7 @@ router.post('/createblog', (req, res)=>{ // create blog form
         content: req.body.content,
         email: req.body.email
     })
+
     .then(newBlog => {
         console.log(newBlog)
         res.redirect('http://localhost:3000/')
